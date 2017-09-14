@@ -22,7 +22,7 @@ CREATE TABLE semester (
 
 CREATE TABLE professor (
   id            SERIAL PRIMARY KEY,
-  created_at    TIMESTAMP PRIMARY KEY,
+  created_at    TIMESTAMP DEFAULT now(),
   first_name    TEXT NOT NULL,
   last_name     TEXT NOT NULL,
   teacher_id    TEXT NOT NULL UNIQUE,
@@ -38,7 +38,7 @@ CREATE TABLE course (
 
 CREATE TABLE professor_course_map (
   id            SERIAL PRIMARY KEY,
-  created_at    TIMESTAMP PRIMARY KEY,
+  created_at    TIMESTAMP DEFAULT now(),
   professor_id  INTEGER NOT NULL REFERENCES professor (id) ON DELETE CASCADE ON UPDATE CASCADE,
   course_id     INTEGER NOT NULL REFERENCES course (id) ON DELETE CASCADE ON UPDATE CASCADE,
   year_id       INTEGER NOT NULL REFERENCES year (id) ON DELETE CASCADE ON UPDATE CASCADE,
