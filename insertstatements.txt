@@ -1,0 +1,34 @@
+INSERT INTO student(first_name, last_name, 
+                    student_id, social_num, 
+                    enroll_date) VALUES 
+                    ('Brooks', 'Isoldi', 
+                     '000001', '000-00-0000', 
+                     now());
+                     
+INSERT INTO year(year) VALUES (2017);
+
+INSERT INTO semester(semester_name) VALUES 
+('Spring');
+
+INSERT INTO professor(first_name, last_name,
+                      teacher_id, 
+                      started_teaching_at)
+                      VALUES ('Professor',
+                              'Daniels',
+                              '01010101',
+                              now());
+
+INSERT INTO course(course_number, course_name)
+VALUES ('CS101', 'Computer Science');
+
+INSERT INTO professor_course_map(professor_id,
+                                 course_id,
+                                 year_id,
+                                 semester_id) 
+VALUES ((SELECT id FROM professor WHERE teacher_id = '01010101'),
+(SELECT id FROM course WHERE course_name = 'Computer Science'),
+ (SELECT id FROM year WHERE year = 2017),
+  (SELECT id FROM semester WHERE semester_name = 'Spring'));
+       
+ SELECT * FROM professor_course_map map
+ INNER JOIN professor prof ON prof.id = map.professor_id;
